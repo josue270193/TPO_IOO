@@ -84,18 +84,24 @@ public class AltaCliente extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                controlador.crearCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
-                Dni.setText("");
-                nombre.setText("");
-                domicilio.setText("");
-                telefono.setText("");
-                mail.setText("");
+                if (controlador.existeCliente(Dni.getText()) == null) {
+
+                    controlador.crearCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
+                    Dni.setText("");
+                    nombre.setText("");
+                    domicilio.setText("");
+                    telefono.setText("");
+                    mail.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(AltaCliente.this, Constantes.Error_ExisteCliente, "", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
         getContentPane().add(alta);
 
         pack();
-        setSize(400, 300);
+        setSize(500, 300);
     }
 }

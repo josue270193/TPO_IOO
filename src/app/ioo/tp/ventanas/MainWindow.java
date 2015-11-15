@@ -49,9 +49,9 @@ public class MainWindow extends JFrame {
             menuCliente = new JMenu();
             menuCliente.setText(Constantes.Cliente);
             menuCliente.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuCliente.setMnemonic(KeyEvent.VK_1);
 
             altaCliente = new JMenuItem();
-            altaCliente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.ALT_MASK));
             altaCliente.setText(Constantes.AltaCliente);
             altaCliente.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -64,8 +64,8 @@ public class MainWindow extends JFrame {
             modificacionCliente.setText(Constantes.ModificacionCliente);
             modificacionCliente.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//                    ModificacionCliente modificacionClienteVentana = new ModificacionCliente(controlador);
-//                    modificacionClienteVentana.setVisible(true);
+                    ModificacionCliente modificacionClienteVentana = new ModificacionCliente(controlador);
+                    modificacionClienteVentana.setVisible(true);
                 }
             });
 
@@ -82,6 +82,7 @@ public class MainWindow extends JFrame {
             menuAuto = new JMenu();
             menuAuto.setText(Constantes.Auto);
             menuAuto.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuAuto.setMnemonic(KeyEvent.VK_2);
 
             altaAuto = new JMenuItem();
             altaAuto.setText(Constantes.AltaAuto);
@@ -114,6 +115,7 @@ public class MainWindow extends JFrame {
             menuCochera = new JMenu();
             menuCochera.setText(Constantes.Cochera);
             menuCochera.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuCochera.setMnemonic(KeyEvent.VK_3);
 
             altaCochera = new JMenuItem();
             altaCochera.setText(Constantes.AltaCochera);
@@ -147,6 +149,7 @@ public class MainWindow extends JFrame {
             /** OPCIONES **/
             menuOpciones = new JMenu();
             menuOpciones.setText(Constantes.Opciones);
+            menuOpciones.setMnemonic(KeyEvent.VK_4);
 
             opcionSalir = new JMenuItem();
             opcionSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));

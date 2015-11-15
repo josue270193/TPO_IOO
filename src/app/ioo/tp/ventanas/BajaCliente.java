@@ -189,7 +189,7 @@ public class BajaCliente extends JDialog{
 	
 	
 		pack();
-		setSize(400, 300);
+		setSize(500, 300);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

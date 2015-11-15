@@ -110,6 +110,6 @@ public class AltaCochera extends JDialog {
         getContentPane().add(alta);
 
         pack();
-        setSize(400, 300);
+        setSize(500, 300);
     }
 }

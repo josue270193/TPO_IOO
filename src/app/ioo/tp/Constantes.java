@@ -42,4 +42,9 @@ public class Constantes {
 	public static final String Marca = "Marca";
 	public static final String Modelo = "Modelo";
 	public static final String Tamanno = "Tamaño";
+
+	public static final String IngresarDNI = "Ingrese Dni:";
+	public static final String Error_NoExisteCliente = "No se encontro un cliente con el DNI ingresado.";
+    public static final String Error_ExisteCliente = "Ya se encuentra un cliente con el DNI ingresado.";
+    public static final String Exito_ClienteModificado = "Cliente modificado exitosamente";
 }
