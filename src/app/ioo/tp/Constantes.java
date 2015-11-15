@@ -38,4 +38,8 @@ public class Constantes {
 	public static final String Pequenas = "Pequenas";
 	public static final String Medianas = "Medianas";
 	public static final String Grandes = "Grandes";
+	public static final String Patente = "Patente";
+	public static final String Marca = "Marca";
+	public static final String Modelo = "Modelo";
+	public static final String Tamanno = "Tamaño";
 }
