@@ -73,8 +73,8 @@ public class MainWindow extends JFrame {
             bajaCliente.setText(Constantes.BajaCliente);
             bajaCliente.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//                    BajaCliente bajaClienteVentana = new BajaCliente(controlador);
-//                    bajaClienteVentana.setVisible(true);
+                    BajaCliente bajaClienteVentana = new BajaCliente(controlador);
+                    bajaClienteVentana.setVisible(true);
                 }
             });
 

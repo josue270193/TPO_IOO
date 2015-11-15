@@ -11,9 +11,6 @@ import java.awt.event.ActionListener;
 
 public class ModificacionCliente extends JDialog {
 
-    private JPanel panel;
-    private JPanel panelBotones;
-
     private JLabel labelDni;
     private JTextField Dni;
 
