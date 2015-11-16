@@ -24,7 +24,12 @@ public class Constantes {
 	public static final String AltaMedioDePago = "Alta Medio De Pago";
 	public static final String BajaMedioDePago = "Baja Medio De Pago";
 	public static final String ModificacionMedioDePago= "Modificacion Medio De Pago";
-	
+
+	public static final String Contrato = "Contrato";
+	public static final String AltaContrato = "Alta Contrato";
+	public static final String BajaContrato = "Baja Contrato";
+	public static final String ModificacionContrato = "Modificacion Contrato";
+
 	public static final String Nombre = "Nombre:";
 	public static final String Domicilio = "Domicilio:";
 	public static final String Telefono = "Telefono:";
@@ -49,4 +54,11 @@ public class Constantes {
     public static final String Error_ExisteCliente = "Ya se encuentra un cliente con el DNI ingresado.";
     public static final String Exito_ClienteModificado = "Cliente modificado exitosamente";
 	public static final String Exito_ClienteEliminado = "Cliente eliminado exitosamente";
+	public static final String Exito_ClienteCreado = "Cliente creado exitosamente";
+	public static final String Exito_CocherasCreadas = "Cocheras creadas exitosamente";
+
+	public static final String Siguiente = "Siguiente";
+	public static String VentanaPrincipal = "Ventana Principal";
+	public static String AltaContratoBuscarSocio = "Alta Contrato - Busqueda del socio a generar contrato";
+	public static String AltaContratoAltaAuto = "Alta Contrato - Alta del auto del socio";
 }

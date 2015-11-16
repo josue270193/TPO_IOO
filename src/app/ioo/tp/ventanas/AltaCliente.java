@@ -87,6 +87,9 @@ public class AltaCliente extends JDialog {
                 if (controlador.existeCliente(Dni.getText()) == null) {
 
                     controlador.crearCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
+
+                    JOptionPane.showMessageDialog(AltaCliente.this, Constantes.Exito_ClienteCreado, "", JOptionPane.INFORMATION_MESSAGE);
+
                     Dni.setText("");
                     nombre.setText("");
                     domicilio.setText("");
@@ -101,6 +104,7 @@ public class AltaCliente extends JDialog {
 
         getContentPane().add(alta);
 
+        setTitle(Constantes.AltaCliente);
         pack();
         setSize(500, 300);
     }

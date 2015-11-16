@@ -27,6 +27,12 @@ public class MainWindow extends JFrame {
     private JMenuItem modificacionAuto;
     private JMenuItem bajaAuto;
 
+    private JMenu menuContrato;
+    private JMenuItem altaContrato;
+    private JMenuItem modificacionContrato;
+    private JMenuItem bajaContrato;
+
+
     private JMenu menuOpciones;
     private JMenuItem opcionSalir;
 
@@ -81,6 +87,7 @@ public class MainWindow extends JFrame {
             /** AUTO **/
             menuAuto = new JMenu();
             menuAuto.setText(Constantes.Auto);
+            menuAuto.setEnabled(false);
             menuAuto.setPreferredSize(new java.awt.Dimension(56, 21));
             menuAuto.setMnemonic(KeyEvent.VK_2);
 
@@ -88,8 +95,6 @@ public class MainWindow extends JFrame {
             altaAuto.setText(Constantes.AltaAuto);
             altaAuto.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//					AltaAlumno a = new AltaAlumno(sistema);
-//					a.setVisible(true);
                 }
             });
 
@@ -97,8 +102,6 @@ public class MainWindow extends JFrame {
             modificacionAuto.setText(Constantes.ModificacionAuto);
             modificacionAuto.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//					ModificarAlumno m = new ModificarAlumno(sistema);
-//					m.setVisible(true);
                 }
             });
 
@@ -106,8 +109,6 @@ public class MainWindow extends JFrame {
             bajaAuto.setText(Constantes.BajaAuto);
             bajaAuto.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//					ModificarAlumno m = new ModificarAlumno(sistema);
-//					m.setVisible(true);
                 }
             });
 
@@ -121,35 +122,62 @@ public class MainWindow extends JFrame {
             altaCochera.setText(Constantes.AltaCochera);
             altaCochera.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    AltaCochera ac = new AltaCochera(controlador);
-                    ac.setVisible(true);
+                    AltaCochera altaCocheraVentana = new AltaCochera(controlador);
+                    altaCocheraVentana.setVisible(true);
                 }
             });
 
             modificacionCochera = new JMenuItem();
             modificacionCochera.setText(Constantes.ModificacionCochera);
+            modificacionCochera.setEnabled(false);
             modificacionCochera.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//					ModificarAlumno m = new ModificarAlumno(sistema);
-//					m.setVisible(true);
                 }
             });
 
             bajaCochera = new JMenuItem();
             bajaCochera.setText(Constantes.BajaCochera);
+            bajaCochera.setEnabled(false);
             bajaCochera.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-//					ModificarAlumno m = new ModificarAlumno(sistema);
-//					m.setVisible(true);
                 }
             });
 
 
+            /** CONTRATO **/
+            menuContrato = new JMenu();
+            menuContrato.setText(Constantes.Contrato);
+            menuContrato.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuContrato.setMnemonic(KeyEvent.VK_4);
+
+            altaContrato= new JMenuItem();
+            altaContrato.setText(Constantes.AltaContrato);
+            altaContrato.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    AltaContratoBusquedaSocio altaContratoBusquedaSocioVentana = new AltaContratoBusquedaSocio(controlador);
+                    altaContratoBusquedaSocioVentana.setVisible(true);
+                }
+            });
+
+            modificacionContrato = new JMenuItem();
+            modificacionContrato.setText(Constantes.ModificacionContrato);
+            modificacionContrato.setEnabled(false);
+            modificacionContrato.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                }
+            });
+
+            bajaContrato = new JMenuItem();
+            bajaContrato.setText(Constantes.BajaContrato);
+            bajaContrato.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                }
+            });
 
             /** OPCIONES **/
             menuOpciones = new JMenu();
             menuOpciones.setText(Constantes.Opciones);
-            menuOpciones.setMnemonic(KeyEvent.VK_4);
+            menuOpciones.setMnemonic(KeyEvent.VK_9);
 
             opcionSalir = new JMenuItem();
             opcionSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
@@ -174,13 +202,19 @@ public class MainWindow extends JFrame {
             menuAuto.add(modificacionAuto);
             menuAuto.add(bajaAuto);
 
+            menuContrato.add(altaContrato);
+            menuContrato.add(modificacionContrato);
+            menuContrato.add(bajaContrato);
+
             menuOpciones.add(opcionSalir);
 
             menuBar.add(menuCliente);
             menuBar.add(menuAuto);
             menuBar.add(menuCochera);
+            menuBar.add(menuContrato);
             menuBar.add(menuOpciones);
 
+            setTitle(Constantes.VentanaPrincipal);
             pack();
             setBounds(0, 0, getToolkit().getScreenSize().width / 2, getToolkit().getScreenSize().height / 2);
             setResizable(false);

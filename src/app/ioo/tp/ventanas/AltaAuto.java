@@ -10,7 +10,11 @@ import java.awt.event.ActionListener;
 
 public class AltaAuto extends JDialog {
 
+    private final String dni;
     private Controlador controlador;
+
+    private JLabel labelDni;
+    private JTextField Dni;
 
     private JLabel labelPatente;
     private JTextField fieldPatente;
@@ -26,9 +30,10 @@ public class AltaAuto extends JDialog {
 
     private JButton alta;
 
-    public AltaAuto(Controlador controlador) throws HeadlessException {
+    public AltaAuto(Controlador controlador, String dni) throws HeadlessException {
         super();
         this.controlador = controlador;
+        this.dni = dni;
         initGUI();
     }
 
@@ -36,6 +41,17 @@ public class AltaAuto extends JDialog {
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        labelDni = new JLabel(Constantes.Dni);
+        labelDni.setBounds(21, 12, 63, 28);
+        getContentPane().add(labelDni);
+
+        Dni = new JTextField();
+        Dni.setBounds(119, 12, 210, 28);
+        Dni.setEnabled(false);
+        getContentPane().add(Dni);
+
+        Dni.setText(dni);
 
         labelPatente = new JLabel(Constantes.Patente);
         labelPatente.setBounds(21, 42, 63, 28);
@@ -73,21 +89,14 @@ public class AltaAuto extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //TO-DO HACERRRR?
-                /*	controlador.crearCliente(Dni.getText(), nombre.getText(), domicilio.getText(),
-							telefono.getText(), mail.getText());
-					Dni.setText("");
-					nombre.setText("");
-					domicilio.setText("");
-					telefono.setText("");
-					mail.setText("");
-					controlador.*/
+
+                controlador.
             }
         });
 
         getContentPane().add(alta);
         pack();
-
+        setTitle(Constantes.AltaContratoAltaAuto);
         setSize(500, 300);
     }
 }

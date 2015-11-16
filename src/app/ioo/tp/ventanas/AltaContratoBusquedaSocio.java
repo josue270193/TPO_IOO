@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ModificacionCliente extends JDialog {
+public class AltaContratoBusquedaSocio extends JDialog {
 
     private JLabel labelDni;
     private JTextField Dni;
@@ -35,14 +35,13 @@ public class ModificacionCliente extends JDialog {
     private Controlador controlador;
     private Cliente cliente;
 
-    public ModificacionCliente(Controlador ccontrolador) {
+    public AltaContratoBusquedaSocio(Controlador controlador) throws HeadlessException {
         super();
-        this.controlador = ccontrolador;
+        this.controlador = controlador;
         initGUI();
     }
 
     private void initGUI() {
-
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
@@ -91,27 +90,15 @@ public class ModificacionCliente extends JDialog {
         telefono.setEnabled(false);
         getContentPane().add(telefono);
 
-        alta = new JButton(Constantes.Aceptar);
+        alta = new JButton(Constantes.Siguiente);
         alta.setBounds(119, 217, 150, 28);
         alta.setEnabled(false);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                controlador.modificarCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
+                dispose();
 
-                JOptionPane.showMessageDialog(ModificacionCliente.this, Constantes.Exito_ClienteModificado, "", JOptionPane.INFORMATION_MESSAGE);
-
-                DniCliente.setText("");
-                Dni.setText("");
-                nombre.setText("");
-                domicilio.setText("");
-                mail.setText("");
-                telefono.setText("");
-
-                alta.setEnabled(false);
-                nombre.setEnabled(false);
-                domicilio.setEnabled(false);
-                mail.setEnabled(false);
-                telefono.setEnabled(false);
+                AltaAuto altaAuto = new AltaAuto(controlador, cliente.getDni());
+                altaAuto.setVisible(true);
             }
         });
         getContentPane().add(alta);
@@ -133,12 +120,6 @@ public class ModificacionCliente extends JDialog {
                 if (cliente != null) {
 
                     Dni.setText(cliente.getDni());
-
-                    nombre.setEnabled(true);
-                    domicilio.setEnabled(true);
-                    mail.setEnabled(true);
-                    telefono.setEnabled(true);
-
                     nombre.setText(cliente.getNombre());
                     domicilio.setText(cliente.getDomicilio());
                     mail.setText(cliente.getMail());
@@ -146,7 +127,7 @@ public class ModificacionCliente extends JDialog {
 
                     alta.setEnabled(true);
                 }else{
-                    JOptionPane.showMessageDialog(ModificacionCliente.this, Constantes.Error_NoExisteCliente, "", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(AltaContratoBusquedaSocio.this, Constantes.Error_NoExisteCliente, "", JOptionPane.ERROR_MESSAGE);
 
                     Dni.setText("");
                     nombre.setText("");
@@ -155,17 +136,13 @@ public class ModificacionCliente extends JDialog {
                     telefono.setText("");
 
                     alta.setEnabled(false);
-                    nombre.setEnabled(false);
-                    domicilio.setEnabled(false);
-                    mail.setEnabled(false);
-                    telefono.setEnabled(false);
                 }
             }
         });
         getContentPane().add(buscar);
         pack();
+        setTitle(Constantes.AltaContratoBuscarSocio);
 
-        setTitle(Constantes.ModificacionCliente);
         setSize(500, 300);
     }
 }

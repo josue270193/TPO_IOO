@@ -141,6 +141,7 @@ public class BajaCliente extends JDialog{
 		});
 		getContentPane().add(buscar);
 
+		setTitle(Constantes.BajaCliente);
 		pack();
 		setSize(500, 300);
 	}
