@@ -3,6 +3,8 @@ package app.ioo.tp;
 import java.util.Date;
 import java.util.List;
 
+import app.ioo.tp.vistas.ClienteView;
+
 /**
  *
  * Clase que tiene el Cliente 
@@ -176,5 +178,10 @@ public class Cliente {
 			}					
 		}
 		return null;
+	}
+
+	public ClienteView getClienteView() {
+		ClienteView view = new ClienteView(dni, nombre, domicilio, telefono, mail, estado);
+		return view;
 	}
 }

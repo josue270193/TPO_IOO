@@ -1,12 +1,18 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
-import app.ioo.tp.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+import app.ioo.tp.Constantes;
+import app.ioo.tp.Controlador;
 
 public class AltaCochera extends JDialog {
 
@@ -94,6 +100,7 @@ public class AltaCochera extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+            	
                 controlador.crearMapaCochera(
                         Integer.parseInt(fieldPEQ.getText()), Integer.parseInt(fieldMPEQ.getText()),
                         Integer.parseInt(fieldMED.getText()), Integer.parseInt(fieldMMED.getText()),

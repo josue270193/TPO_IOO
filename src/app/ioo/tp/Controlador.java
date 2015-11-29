@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
+import app.ioo.tp.vistas.ClienteView;
+
 /**
  * Clase que sirve de controlador para todo las funciones del sistema
  *
@@ -65,7 +67,7 @@ public class Controlador {
             , String patente, String marca, String modelo, long tamanno
             , Date periodoInicio, Date periodoFin) {
 
-        Cliente auxCliente = existeCliente(dni); // BUSCO EL CLIENTE SI EXISTE
+        Cliente auxCliente = buscarCliente(dni); // BUSCO EL CLIENTE SI EXISTE
 
         if (auxCliente != null) {
             MedioDePago auxMedioPago = auxCliente.tengoMedioDePago(medioPagoId); // REVISO SI EL CLIENTE TIENE EL ID DEL MEDIO DE PAGO
@@ -91,7 +93,7 @@ public class Controlador {
      * @param idContrato
      */
     public void darBajaContrato(String dni, long idContrato) {
-        Cliente aux = existeCliente(dni); // BUSCO EL CLIENTE SI EXISTE
+        Cliente aux = buscarCliente(dni); // BUSCO EL CLIENTE SI EXISTE
 
         if (aux != null) {
             Contrato auxContrato = existeContrato(idContrato); // BUSCO EL CLIENTE SI EXISTE
@@ -153,7 +155,7 @@ public class Controlador {
      * @param fecha
      */
     public void realizarCobranza(String dni, long idContrato, Date fecha) {
-        Cliente aux = existeCliente(dni); // BUSCO EL CLIENTE SI EXISTE
+        Cliente aux = buscarCliente(dni); // BUSCO EL CLIENTE SI EXISTE
 
         if (aux != null) {
             Contrato auxContrato = existeContrato(idContrato); // BUSCO EL CONTRATO SI EXISTE
@@ -172,7 +174,7 @@ public class Controlador {
      * @param fecha
      */
     public void realizarPago(String dni, long idContrato, double pago, Date fecha) {
-        Cliente aux = existeCliente(dni); // BUSCO EL CLIENTE SI EXISTE
+        Cliente aux = buscarCliente(dni); // BUSCO EL CLIENTE SI EXISTE
 
         if (aux != null) {
             Contrato auxContrato = existeContrato(idContrato); // BUSCO EL CONTRATO SI EXISTE
@@ -187,19 +189,19 @@ public class Controlador {
      * @param medio
      */
     public void altaMedioDePagoEfectivo(String dni) {
-        Cliente auxCliente = existeCliente(dni);
+        Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
             auxCliente.AgregarMedioDePagoEfectivo();
     }
 
     public void altaMedioDePagoDebitoCBU(String dni, String cbu, String entidadbancaria) {
-        Cliente auxCliente = existeCliente(dni);
+        Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
             auxCliente.AgregarMedioDePagoDebitoCBU(cbu, entidadbancaria);
     }
 
     public void altaMediopagoDebitoTarjetaCredito(String dni, String entidad_emisora, long numero_tarjeta, Date fecha_vencimiento) {
-        Cliente auxCliente = existeCliente(dni);
+        Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
             auxCliente.AgregarMedioDePagoDebitoCredito(entidad_emisora, numero_tarjeta, fecha_vencimiento);
     }
@@ -211,7 +213,7 @@ public class Controlador {
      */
     public void modificarMedioDePagoTarjetaCredito(String dni, int id_medio_de_pago, String entidad_emisora, long numero_tarjeta,
                                                    Date fecha_vencimiento) {
-        Cliente auxCliente = existeCliente(dni);
+        Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null) {
             MedioDePago auxMedioPago = auxCliente.tengoMedioDePago(id_medio_de_pago); // BUSCO SI EXISTE EL MEDIO DE PAGO
             if (auxMedioPago != null && auxMedioPago instanceof DebitoTarjetaCredito) {
@@ -229,7 +231,7 @@ public class Controlador {
      */
     public void modificarMedioDePagoDebitoCBU(String dni, int id_medio_de_pago, long numero_facturacion,
                                               String entidad_bancaria, String cbu) {
-        Cliente auxCliente = existeCliente(dni); // BUSCO SI EXISTE EL CLIENTE
+        Cliente auxCliente = buscarCliente(dni); // BUSCO SI EXISTE EL CLIENTE
         if (auxCliente != null) {
             MedioDePago auxMedioPago = auxCliente.tengoMedioDePago(id_medio_de_pago); // BUSCO SI EXISTE EL MEDIO DE PAGO
             if (auxMedioPago != null && auxMedioPago instanceof DebitoCBU) {
@@ -248,17 +250,17 @@ public class Controlador {
      * @param Estado
      */
     public void crearCliente(String dni, String nombre, String domicilio, String telefono, String mail) {
-        if (existeCliente(dni) == null) {
+        if (buscarCliente(dni) == null) {
             Cliente nuevoCliente = new Cliente(dni, nombre, domicilio, telefono, mail);
-            clientes.add(nuevoCliente);
-        }
+            clientes.add(nuevoCliente);            
+        }        
     }
 
     /**
      * @param DNI
      */
     public void eliminarCliente(String DNI) {
-        Cliente aux = existeCliente(DNI);
+        Cliente aux = buscarCliente(DNI);
         if (aux != null) {
             clientes.remove(aux);
         }
@@ -270,8 +272,8 @@ public class Controlador {
      * @param Mail
      * @param Estado
      */
-    public void modificarCliente(String dni, String nombre, String domicilio, String telefono, String mail) {
-        Cliente aux = existeCliente(dni);
+    private void modificarCliente(String dni, String nombre, String domicilio, String telefono, String mail) {
+        Cliente aux = buscarCliente(dni);
         System.out.println(aux);
         if (aux != null) {
             aux.setNombre(nombre);
@@ -280,9 +282,12 @@ public class Controlador {
             aux.setMail(mail);
         }
     }
-
-    public Cliente existeCliente(String dni) {
-
+    
+    public boolean existeCliente(String dni) {
+        return (buscarCliente(dni) != null);
+    }
+    
+    private Cliente buscarCliente(String dni) {
         for (int i = 0; i < clientes.size(); i++) {
             Cliente aux = (Cliente) clientes.get(i);
             if (aux.getDni().equalsIgnoreCase(dni))
@@ -291,6 +296,21 @@ public class Controlador {
         return null;
     }
 
+    // METODOS PARA LAS VISTAS
+        
+	public ClienteView getClienteView(String dni) {
+		if (existeCliente(dni)){
+			return buscarCliente(dni).getClienteView();			
+		}
+		
+		return null;
+	}
+    
+	public void modificarCliente(ClienteView clienteView) {		
+		modificarCliente(clienteView.getDni(), clienteView.getNombre(), clienteView.getDomicilio(), clienteView.getTelefono(), clienteView.getMail());
+	}
+	
+    
     // GET Y SET DE LOS ATRIBUTOS
     public List<Cliente> getClientes() {
         return clientes;
@@ -314,6 +334,5 @@ public class Controlador {
 
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
-    }
-
+    }	
 }

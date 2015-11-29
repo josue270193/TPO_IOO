@@ -1,12 +1,18 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
-import app.ioo.tp.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+import app.ioo.tp.Constantes;
+import app.ioo.tp.Controlador;
 
 public class AltaCliente extends JDialog {
 
@@ -84,8 +90,9 @@ public class AltaCliente extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                if (controlador.existeCliente(Dni.getText()) == null) {
-
+            	
+                if (!controlador.existeCliente(Dni.getText())) {                
+                	                	
                     controlador.crearCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
 
                     JOptionPane.showMessageDialog(AltaCliente.this, Constantes.Exito_ClienteCreado, "", JOptionPane.INFORMATION_MESSAGE);

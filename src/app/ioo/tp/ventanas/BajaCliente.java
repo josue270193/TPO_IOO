@@ -1,13 +1,19 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Cliente;
-import app.ioo.tp.Constantes;
-import app.ioo.tp.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+import app.ioo.tp.Constantes;
+import app.ioo.tp.Controlador;
+import app.ioo.tp.vistas.ClienteView;
 
 public class BajaCliente extends JDialog{
 
@@ -33,7 +39,7 @@ public class BajaCliente extends JDialog{
 	private JButton buscar;
 
 	private Controlador controlador;
-	private Cliente cliente;
+	private ClienteView clienteView;
 
 	public BajaCliente(Controlador controlador) throws HeadlessException {
 		super();		
@@ -124,14 +130,16 @@ public class BajaCliente extends JDialog{
 		buscar.setBounds(301, 7, 100, 28);
 		buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				cliente = controlador.existeCliente(DniCliente.getText());
 
-				if (cliente != null) {
-					Dni.setText(cliente.getDni());
-					nombre.setText(cliente.getNombre());
-					domicilio.setText(cliente.getDomicilio());
-					mail.setText(cliente.getMail());
-					telefono.setText(cliente.getTelefono());
+				if (controlador.existeCliente(DniCliente.getText())
+						&&  ((clienteView = controlador.getClienteView(DniCliente.getText())) != null)	
+					) {
+															
+					Dni.setText(clienteView.getDni());
+					nombre.setText(clienteView.getNombre());
+					domicilio.setText(clienteView.getDomicilio());
+					mail.setText(clienteView.getMail());
+					telefono.setText(clienteView.getTelefono());
 
 					alta.setEnabled(true);
 				}else{

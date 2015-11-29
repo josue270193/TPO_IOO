@@ -1,16 +1,22 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
-import app.ioo.tp.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+import app.ioo.tp.Constantes;
+import app.ioo.tp.Controlador;
+import app.ioo.tp.vistas.ClienteView;
+
 public class AltaAuto extends JDialog {
 
-    private final String dni;
+    private final ClienteView clienteView;
     private Controlador controlador;
 
     private JLabel labelDni;
@@ -30,10 +36,10 @@ public class AltaAuto extends JDialog {
 
     private JButton alta;
 
-    public AltaAuto(Controlador controlador, String dni) throws HeadlessException {
+    public AltaAuto(Controlador controlador, ClienteView clienteView) throws HeadlessException {
         super();
         this.controlador = controlador;
-        this.dni = dni;
+        this.clienteView = clienteView;
         initGUI();
     }
 
@@ -51,7 +57,7 @@ public class AltaAuto extends JDialog {
         Dni.setEnabled(false);
         getContentPane().add(Dni);
 
-        Dni.setText(dni);
+        Dni.setText(clienteView.getDni());
 
         labelPatente = new JLabel(Constantes.Patente);
         labelPatente.setBounds(21, 42, 63, 28);
@@ -89,8 +95,7 @@ public class AltaAuto extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-
-                controlador.
+                
             }
         });
 

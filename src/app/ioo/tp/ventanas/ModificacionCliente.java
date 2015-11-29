@@ -1,13 +1,18 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Cliente;
-import app.ioo.tp.Constantes;
-import app.ioo.tp.Controlador;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+import app.ioo.tp.Constantes;
+import app.ioo.tp.Controlador;
+import app.ioo.tp.vistas.ClienteView;
 
 public class ModificacionCliente extends JDialog {
 
@@ -33,7 +38,7 @@ public class ModificacionCliente extends JDialog {
     private JButton buscar;
 
     private Controlador controlador;
-    private Cliente cliente;
+    private ClienteView clienteView;
 
     public ModificacionCliente(Controlador ccontrolador) {
         super();
@@ -96,7 +101,13 @@ public class ModificacionCliente extends JDialog {
         alta.setEnabled(false);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                controlador.modificarCliente(Dni.getText(), nombre.getText(), domicilio.getText(), telefono.getText(), mail.getText());
+            	            	            	
+            	clienteView.setNombre(nombre.getText());
+            	clienteView.setDomicilio(domicilio.getText());
+            	clienteView.setTelefono(telefono.getText());
+            	clienteView.setMail(mail.getText());
+            	
+                controlador.modificarCliente(clienteView);
 
                 JOptionPane.showMessageDialog(ModificacionCliente.this, Constantes.Exito_ClienteModificado, "", JOptionPane.INFORMATION_MESSAGE);
 
@@ -128,21 +139,21 @@ public class ModificacionCliente extends JDialog {
         buscar.setBounds(301, 7, 100, 28);
         buscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                cliente = controlador.existeCliente(DniCliente.getText());
-
-                if (cliente != null) {
-
-                    Dni.setText(cliente.getDni());
-
+            	            	            	            	                
+                if (controlador.existeCliente(DniCliente.getText()) 
+                		&&  ((clienteView = controlador.getClienteView(DniCliente.getText())) != null) 
+                	) {                	
+                	
                     nombre.setEnabled(true);
                     domicilio.setEnabled(true);
                     mail.setEnabled(true);
                     telefono.setEnabled(true);
 
-                    nombre.setText(cliente.getNombre());
-                    domicilio.setText(cliente.getDomicilio());
-                    mail.setText(cliente.getMail());
-                    telefono.setText(cliente.getTelefono());
+                    Dni.setText(clienteView.getDni());
+                    nombre.setText(clienteView.getNombre());
+                    domicilio.setText(clienteView.getDomicilio());
+                    mail.setText(clienteView.getMail());
+                    telefono.setText(clienteView.getTelefono());
 
                     alta.setEnabled(true);
                 }else{
