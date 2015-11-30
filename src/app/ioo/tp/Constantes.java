@@ -61,4 +61,7 @@ public class Constantes {
 	public static String VentanaPrincipal = "Ventana Principal";
 	public static String AltaContratoBuscarSocio = "Alta Contrato - Busqueda del socio a generar contrato";
 	public static String AltaContratoAltaAuto = "Alta Contrato - Alta del auto del socio";
+	public static String Error_NoExisteCocheraDisponible = "No hay cocheras del tipo seleccionado disponibles.";
+	public static String FechaInicio = "Fecha inicio";
+	public static String FechaFin = "Fecha fin";
 }

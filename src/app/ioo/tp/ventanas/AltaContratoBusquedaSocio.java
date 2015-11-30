@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 import app.ioo.tp.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.vistas.ClienteView;
+import app.ioo.tp.vistas.ContratoView;
 
 public class AltaContratoBusquedaSocio extends JDialog {
 
@@ -40,10 +41,12 @@ public class AltaContratoBusquedaSocio extends JDialog {
 
     private Controlador controlador;
     private ClienteView clienteView;
+    private ContratoView contratoView;
 
     public AltaContratoBusquedaSocio(Controlador controlador) throws HeadlessException {
         super();
         this.controlador = controlador;
+        this.contratoView = new ContratoView();
         initGUI();
     }
 
@@ -102,9 +105,9 @@ public class AltaContratoBusquedaSocio extends JDialog {
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 dispose();
-
-                AltaAuto altaAuto = new AltaAuto(controlador, clienteView);
-                altaAuto.setVisible(true);
+                contratoView.setClienteView(clienteView);
+                AltaContratoAltaAuto altaContratoAltaAuto = new AltaContratoAltaAuto(controlador, contratoView);
+                altaContratoAltaAuto.setVisible(true);
             }
         });
         getContentPane().add(alta);

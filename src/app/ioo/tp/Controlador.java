@@ -72,7 +72,7 @@ public class Controlador {
         if (auxCliente != null) {
             MedioDePago auxMedioPago = auxCliente.tengoMedioDePago(medioPagoId); // REVISO SI EL CLIENTE TIENE EL ID DEL MEDIO DE PAGO
             if (auxMedioPago != null) {
-                Cochera auxCochera = esDisponibleCochera(tamanno); // COMPRUEBO SI TENGO UNA COCHERA DISPONIBLE CON EL TAMA�O A USAR
+                Cochera auxCochera = buscarCocheraTamano(tamanno); // COMPRUEBO SI TENGO UNA COCHERA DISPONIBLE CON EL TAMA�O A USAR
                 if (auxCochera != null) {
                     Contrato contratoExistente = exiteContrato(auxCliente, auxMedioPago, auxCochera, periodoInicio, periodoFin);
                     if (contratoExistente == null) {
@@ -137,7 +137,7 @@ public class Controlador {
      * @param tamanno TAMA�O
      * @return NULL SI NO TENGO COCHERA O UNA COCHERA SI TENGO UNA
      */
-    private Cochera esDisponibleCochera(long tamanno) {
+    private Cochera buscarCocheraTamano(long tamanno) {
         for (Cochera cochera : cocheras) {
             if (cochera.esDisponible(tamanno))
                 return cochera;
@@ -145,6 +145,9 @@ public class Controlador {
         return null;
     }
 
+    public boolean existeCocheraDisponible(long tamanno) {
+        return (buscarCocheraTamano(tamanno) != null);
+    }
 
     /**
      * REALIZO UN {@link MovimientoCC} DE COBRO DE UN CLIENTE DE UN CONTRATO CON EL MONTO Y LA FECHA

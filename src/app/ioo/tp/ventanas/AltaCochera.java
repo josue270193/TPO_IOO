@@ -108,13 +108,7 @@ public class AltaCochera extends JDialog {
                 );
 
                 JOptionPane.showMessageDialog(AltaCochera.this, Constantes.Exito_CocherasCreadas, "", JOptionPane.INFORMATION_MESSAGE);
-
-                fieldGDE.setText("0");
-                fieldMED.setText("0");
-                fieldPEQ.setText("0");
-                fieldMGDE.setText("0");
-                fieldMMED.setText("0");
-                fieldMPEQ.setText("0");
+                AltaCochera.this.dispose();
             }
         });
         getContentPane().add(alta);
