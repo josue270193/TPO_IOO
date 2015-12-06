@@ -1,5 +1,8 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.DebitoTarjetaCreditoView;
+import app.ioo.tp.vistas.MedioDePagoView;
+
 import java.util.Date;
 
 public class DebitoTarjetaCredito extends MedioDePago {
@@ -42,5 +45,10 @@ public class DebitoTarjetaCredito extends MedioDePago {
 
 	public void setFecha_vencimiento(Date fecha_vencimiento) {
 		this.fecha_vencimiento = fecha_vencimiento;
+	}
+
+	@Override
+	public MedioDePagoView crearMedioDePagoView() {
+		return new DebitoTarjetaCreditoView(getId(), getNumero_tarjeta(), getEntidad_emisora(), getFecha_vencimiento());
 	}
 }

@@ -1,5 +1,6 @@
 package app.ioo.tp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class Cliente {
 		this.telefono = telefono;
 		this.mail = mail;
 		this.estado = estado;
+
+		this.mediosDePago = new ArrayList<MedioDePago>();
 	}
 
 	/**
@@ -55,27 +58,40 @@ public class Cliente {
 		for(MedioDePago mdp: mediosDePago)
 			if(mdp instanceof Efectivo)
 				return false;
+
 		mediosDePago.add(new Efectivo());
 		return true;
 	}
 	
 	public boolean AgregarMedioDePagoDebitoCBU(String CBU, String EntidadBancaria) {
+		if(CBU.trim().isEmpty() || EntidadBancaria.trim().isEmpty())
+			return false;
+
 		for(MedioDePago mdp: mediosDePago)
 			if(mdp instanceof DebitoCBU)
-				if(((DebitoCBU) mdp).getCbu().compareTo(CBU)==0
-				&& ((DebitoCBU) mdp).getEntidad_bancaria().compareTo(EntidadBancaria)==0)
+				if 	(
+						((DebitoCBU) mdp).getCbu().compareTo(CBU) == 0
+					&& 	((DebitoCBU) mdp).getEntidad_bancaria().compareTo(EntidadBancaria) == 0
+				)
 					return false;
+
 		mediosDePago.add(new DebitoCBU(EntidadBancaria, CBU));
 		return true;
 	}
 	
 	public boolean AgregarMedioDePagoDebitoCredito(String entidad_emisora, long numero_tarjeta, Date fecha_vencimiento) {
+		if( entidad_emisora.trim().isEmpty() || numero_tarjeta < 0 || fecha_vencimiento == null )
+			return false;
+
 		for(MedioDePago mdp: mediosDePago)
 			if(mdp instanceof DebitoTarjetaCredito)
-				if(((DebitoTarjetaCredito)mdp).getEntidad_emisora().compareTo(entidad_emisora)==0
-				&& ((DebitoTarjetaCredito)mdp).getFecha_vencimiento().compareTo(fecha_vencimiento)==0
-				&& ((DebitoTarjetaCredito)mdp).getNumero_tarjeta()== numero_tarjeta)
+				if(
+						((DebitoTarjetaCredito)mdp).getEntidad_emisora().compareTo(entidad_emisora) == 0
+					&& 	((DebitoTarjetaCredito)mdp).getFecha_vencimiento().compareTo(fecha_vencimiento) == 0
+					&& 	((DebitoTarjetaCredito)mdp).getNumero_tarjeta() == numero_tarjeta
+				)
 					return false;
+
 		mediosDePago.add(new DebitoTarjetaCredito(entidad_emisora, numero_tarjeta, fecha_vencimiento));
 		return true;
 	}

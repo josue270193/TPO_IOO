@@ -1,5 +1,8 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.DebitoCBUView;
+import app.ioo.tp.vistas.MedioDePagoView;
+
 public class DebitoCBU extends MedioDePago {
 
 	private String entidad_bancaria;
@@ -30,5 +33,9 @@ public class DebitoCBU extends MedioDePago {
 	public void setCbu(String cbu) {
 		this.cbu = cbu;
 	}
-	
+
+	@Override
+	public MedioDePagoView crearMedioDePagoView() {
+		return new DebitoCBUView(getId(), getCbu(), getEntidad_bancaria());
+	}
 }

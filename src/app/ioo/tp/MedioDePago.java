@@ -1,5 +1,7 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.MedioDePagoView;
+
 /**
  * Clase padre donde se origina los medios de pagos
  * 
@@ -11,15 +13,11 @@ public abstract class MedioDePago {
 	public static final int EFECTIVO = 0; 
 	public static final int DEBITO_CBU = 1; 
 	public static final int DEBITO_TARJETA_CREDITO = 2;
-	
-	
+
 	private static int ultimoID;
-	
+
 	protected int id;
-	
-	
-	//protected double monto_pagado;
-	
+
 	public MedioDePago() {		
 		this(++ultimoID);
 	}
@@ -27,11 +25,9 @@ public abstract class MedioDePago {
 	
 	public MedioDePago(int id) {		
 		this.id = id;
-//		this.monto_pagado = monto_pagado;
 	}
 
 	// GET Y SET DE LOS ATRIBUTOS
-	
 	public int getId() {
 		return id;
 	}
@@ -48,11 +44,5 @@ public abstract class MedioDePago {
 		return false;
 	}
 
-//	public double getMonto_pagado() {
-//		return monto_pagado;
-//	}
-//
-//	public void setMonto_pagado(double monto_pagado) {
-//		this.monto_pagado = monto_pagado;
-//	}
+	public abstract MedioDePagoView crearMedioDePagoView();
 }

@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import app.ioo.tp.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.TipoCochera;
+import app.ioo.tp.util.ItemCombo;
 import app.ioo.tp.vistas.AutoView;
 import app.ioo.tp.vistas.ContratoView;
 
@@ -95,7 +96,7 @@ public class AltaContratoAltaAuto extends JDialog {
         opcionesTamano.add(new ItemCombo(TipoCochera.TAMANO_GRANDE, Constantes.Grandes));
 
         fieldTamanno = new JComboBox<ItemCombo>(opcionesTamano);
-        fieldTamanno.setRenderer(new ItemComboRender());
+        fieldTamanno.setRenderer(new ItemCombo.ItemComboRender());
         fieldTamanno.setBounds(119, 180, 210, 28);
         getContentPane().add(fieldTamanno);
 
@@ -105,8 +106,8 @@ public class AltaContratoAltaAuto extends JDialog {
             public void actionPerformed(ActionEvent evt) {
                 ItemCombo item = (ItemCombo) fieldTamanno.getSelectedItem();
 
-                if ( controlador.existeCocheraDisponible(item.getTipoCochera()) ) {
-                    autoView = new AutoView(fieldPatente.getText(), fieldMarca.getText(), fieldModelo.getText(), item.getTipoCochera());
+                if (controlador.existeCocheraDisponible((Long) item.getValue()) ) {
+                    autoView = new AutoView(fieldPatente.getText(), fieldMarca.getText(), fieldModelo.getText(), (Long) item.getValue());
                     contratoView.setAutoView(autoView);
 
                     dispose();
@@ -114,7 +115,7 @@ public class AltaContratoAltaAuto extends JDialog {
                     AltaContratoDetalle altaContratoDetalle = new AltaContratoDetalle(controlador, contratoView);
                     altaContratoDetalle.setVisible(true);
 
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(AltaContratoAltaAuto.this, Constantes.Error_NoExisteCocheraDisponible, "", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -125,40 +126,6 @@ public class AltaContratoAltaAuto extends JDialog {
         pack();
         setTitle(Constantes.AltaContratoAltaAuto);
         setSize(500, 300);
-    }
-
-    class ItemCombo{
-        private long tipoCochera;
-
-        private String texto;
-
-        public ItemCombo(long tipoCochera, String texto) {
-            this.tipoCochera = tipoCochera;
-            this.texto = texto;
-        }
-
-        public long getTipoCochera() {
-            return tipoCochera;
-        }
-
-        public String getTexto() {
-            return texto;
-        }
-    }
-
-    class ItemComboRender extends BasicComboBoxRenderer{
-
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-
-            if (value != null){
-                ItemCombo item = (ItemCombo) value;
-                setText(item.getTexto());
-            }
-
-            return this;
-        }
     }
 }
 

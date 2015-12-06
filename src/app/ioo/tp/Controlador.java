@@ -191,22 +191,28 @@ public class Controlador {
      * @param int
      * @param medio
      */
-    public void altaMedioDePagoEfectivo(String dni) {
+    public boolean altaMedioDePagoEfectivo(String dni) {
         Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
-            auxCliente.AgregarMedioDePagoEfectivo();
+            return auxCliente.AgregarMedioDePagoEfectivo();
+
+        return false;
     }
 
-    public void altaMedioDePagoDebitoCBU(String dni, String cbu, String entidadbancaria) {
+    public boolean altaMedioDePagoDebitoCBU(String dni, String cbu, String entidadbancaria) {
         Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
-            auxCliente.AgregarMedioDePagoDebitoCBU(cbu, entidadbancaria);
+            return auxCliente.AgregarMedioDePagoDebitoCBU(cbu, entidadbancaria);
+
+        return false;
     }
 
-    public void altaMediopagoDebitoTarjetaCredito(String dni, String entidad_emisora, long numero_tarjeta, Date fecha_vencimiento) {
+    public boolean altaMedioDePagoDebitoTarjetaCredito(String dni, String entidad_emisora, long numero_tarjeta, Date fecha_vencimiento) {
         Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null)
-            auxCliente.AgregarMedioDePagoDebitoCredito(entidad_emisora, numero_tarjeta, fecha_vencimiento);
+            return auxCliente.AgregarMedioDePagoDebitoCredito(entidad_emisora, numero_tarjeta, fecha_vencimiento);
+
+        return false;
     }
 
     /**

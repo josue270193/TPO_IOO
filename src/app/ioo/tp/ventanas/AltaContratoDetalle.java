@@ -58,7 +58,7 @@ public class AltaContratoDetalle extends JDialog {
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                System.out.println("fechaInicio " + fechaInicio.getValue());
+                System.out.println("fechaInicio " + fechaInicio.getValue() + " - " + fechaInicio.getValue().getClass().toString());
                 System.out.println("fechaFin " + fechaFin.getValue());
             }
         });

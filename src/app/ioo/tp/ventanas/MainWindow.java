@@ -32,6 +32,10 @@ public class MainWindow extends JFrame {
     private JMenuItem modificacionContrato;
     private JMenuItem bajaContrato;
 
+    private JMenu menuMedioPago;
+    private JMenuItem altaMedioPago;
+    private JMenuItem modificacionMedioPago;
+    private JMenuItem bajaMedioPago;
 
     private JMenu menuOpciones;
     private JMenuItem opcionSalir;
@@ -115,7 +119,7 @@ public class MainWindow extends JFrame {
             /** COCHERA **/
             menuCochera = new JMenu();
             menuCochera.setText(Constantes.Cochera);
-            menuCochera.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuCochera.setPreferredSize(new java.awt.Dimension(60, 21));
             menuCochera.setMnemonic(KeyEvent.VK_3);
 
             altaCochera = new JMenuItem();
@@ -147,7 +151,7 @@ public class MainWindow extends JFrame {
             /** CONTRATO **/
             menuContrato = new JMenu();
             menuContrato.setText(Constantes.Contrato);
-            menuContrato.setPreferredSize(new java.awt.Dimension(56, 21));
+            menuContrato.setPreferredSize(new java.awt.Dimension(60, 21));
             menuContrato.setMnemonic(KeyEvent.VK_4);
 
             altaContrato= new JMenuItem();
@@ -170,6 +174,35 @@ public class MainWindow extends JFrame {
             bajaContrato = new JMenuItem();
             bajaContrato.setText(Constantes.BajaContrato);
             bajaContrato.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                }
+            });
+
+            /** MEDIO DE PAGO **/
+            menuMedioPago = new JMenu();
+            menuMedioPago.setText(Constantes.MedioDePago);
+            menuMedioPago.setPreferredSize(new java.awt.Dimension(100, 21));
+            menuMedioPago.setMnemonic(KeyEvent.VK_5);
+
+            altaMedioPago= new JMenuItem();
+            altaMedioPago.setText(Constantes.AltaMedioDePago);
+            altaMedioPago.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    AltaMedioDePago altaMedioDePagoVentana = new AltaMedioDePago(controlador);
+                    altaMedioDePagoVentana.setVisible(true);
+                }
+            });
+
+            modificacionMedioPago = new JMenuItem();
+            modificacionMedioPago.setText(Constantes.ModificacionMedioDePago);
+            modificacionMedioPago.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                }
+            });
+
+            bajaMedioPago = new JMenuItem();
+            bajaMedioPago.setText(Constantes.BajaMedioDePago);
+            bajaMedioPago.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                 }
             });
@@ -206,12 +239,17 @@ public class MainWindow extends JFrame {
             menuContrato.add(modificacionContrato);
             menuContrato.add(bajaContrato);
 
+            menuMedioPago.add(altaMedioPago);
+            menuMedioPago.add(modificacionMedioPago);
+            menuMedioPago.add(bajaMedioPago);
+
             menuOpciones.add(opcionSalir);
 
             menuBar.add(menuCliente);
             menuBar.add(menuAuto);
             menuBar.add(menuCochera);
             menuBar.add(menuContrato);
+            menuBar.add(menuMedioPago);
             menuBar.add(menuOpciones);
 
             setTitle(Constantes.VentanaPrincipal);

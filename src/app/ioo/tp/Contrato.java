@@ -71,7 +71,7 @@ public class Contrato {
 	 */
 	public void generarCobranza(Date fecha) {
 		double monto = getCochera().getCostoCochera();
-		
+
 		getCuenta_corriente().agregarMovimiento(fecha, MovimientoCC.MOVIMIENTO_COBRO, monto);
 	}
 	
