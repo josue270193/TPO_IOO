@@ -1,4 +1,4 @@
-package app.ioo.tp;
+package app.ioo.tp.util;
 
 public class Constantes {
 
@@ -73,4 +73,11 @@ public class Constantes {
 	public static String Error_ExisteMedioPago = "No se pudo dar de alta el Medio de Pago.\n" +
 			"Ya existe el medio de pago asociado con el cliente con los datos proporcionados";
 	public static String Correcto_MedioPago = "Se ha creado el Medio de Pago exitosamente";
+	public static String CBU = "CBU";
+	public static String EntidadBancaria = "Entidad Bancaria";
+	public static String EntidadEmisora = "Entidad Emisora";
+	public static String NumeroTarjeta = "Numero de Tarjeta";
+	public static String FechaVencimiento = "Fecha Vencimiento";
+	public static String Error_AltaContrato = "No se pudo realizar la alta del contrato";
+	public static String Exito_AltaContrato = "Se ha creado el contrato ezxitosamente";
 }

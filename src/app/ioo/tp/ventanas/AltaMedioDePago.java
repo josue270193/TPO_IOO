@@ -1,10 +1,9 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
+import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.util.ItemCombo;
 import app.ioo.tp.vistas.ClienteView;
-import app.ioo.tp.vistas.ContratoView;
 import app.ioo.tp.vistas.MedioDePagoView;
 
 import javax.swing.*;
@@ -114,7 +113,7 @@ public class AltaMedioDePago extends JDialog {
         });
         getContentPane().add(buscar);
         pack();
-        setTitle(Constantes.AltaContratoBuscarSocio);
+        setTitle(Constantes.AltaMedioDePago);
 
         setSize(500, 300);
     }

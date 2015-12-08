@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-import app.ioo.tp.vistas.ClienteView;
+import app.ioo.tp.vistas.*;
 
 /**
  * Clase que sirve de controlador para todo las funciones del sistema
@@ -63,7 +63,7 @@ public class Controlador {
      * @param periodoInicio
      * @param periodoFin
      */
-    public void crearContrato(String dni, long medioPagoId
+    public boolean crearContrato(String dni, long medioPagoId
             , String patente, String marca, String modelo, long tamanno
             , Date periodoInicio, Date periodoFin) {
 
@@ -79,11 +79,14 @@ public class Controlador {
                         contratoExistente = new Contrato(periodoInicio, periodoFin, auxCliente, auxCochera, auxMedioPago);
                         contratos.add(contratoExistente);
                         auxCochera.ocuparCochera(patente, marca, modelo, tamanno); // OCUPO LA COCHERA QUE ANTES ESTABA VACIA
+
+                        return true;
                     }
 
                 }
             }
         }
+        return false;
     }
 
     /**
@@ -314,12 +317,36 @@ public class Controlador {
 		
 		return null;
 	}
-    
-	public void modificarCliente(ClienteView clienteView) {		
+
+	public void modificarCliente(ClienteView clienteView) {
 		modificarCliente(clienteView.getDni(), clienteView.getNombre(), clienteView.getDomicilio(), clienteView.getTelefono(), clienteView.getMail());
 	}
-	
-    
+
+    /**
+     * OBTENGO LOS MEDIOS DE PAGOS CON UNA VIEW CORRRESPONDIENTE PASANDO EL DNI COMO PARAMETRO
+     * @param dni
+     * @return
+     */
+    public List<MedioDePagoView> obtenerMediosPagoCliente(String dni) {
+        List<MedioDePagoView> lista = new ArrayList<MedioDePagoView>();
+
+        Cliente cliente = buscarCliente(dni);
+
+        for (MedioDePago m : cliente.getMediosDePago()){
+            if (m instanceof Efectivo){
+                lista.add( new EfectivoView(m.getId()) );
+            }
+            else if (m instanceof DebitoCBU){
+                lista.add( new DebitoCBUView(m.getId(), ((DebitoCBU) m).getCbu(),((DebitoCBU) m).getEntidad_bancaria())) ;
+            }
+            else if (m instanceof DebitoTarjetaCredito){
+                lista.add(new DebitoTarjetaCreditoView(m.getId(), ((DebitoTarjetaCredito) m).getNumero_tarjeta(), ((DebitoTarjetaCredito) m).getEntidad_emisora(), ((DebitoTarjetaCredito) m).getFecha_vencimiento()));
+            }
+        }
+
+        return lista;
+    }
+
     // GET Y SET DE LOS ATRIBUTOS
     public List<Cliente> getClientes() {
         return clientes;
@@ -343,5 +370,6 @@ public class Controlador {
 
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
-    }	
+    }
+
 }

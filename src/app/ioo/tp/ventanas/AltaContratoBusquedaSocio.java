@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import app.ioo.tp.Constantes;
+import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.vistas.ClienteView;
 import app.ioo.tp.vistas.ContratoView;

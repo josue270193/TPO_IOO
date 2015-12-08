@@ -1,6 +1,6 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
+import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.vistas.ClienteView;
 
@@ -18,6 +18,10 @@ public class AltaCBU extends JDialog {
     private Controlador controlador;
 
     private JButton alta;
+    private JLabel labelCBU;
+    private JTextField cbu;
+    private JLabel labelEntidadBancaria;
+    private JTextField entidadBancaria;
 
     public AltaCBU(Controlador controlador, ClienteView clienteView) throws HeadlessException {
         super();
@@ -30,12 +34,27 @@ public class AltaCBU extends JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        labelCBU = new JLabel(Constantes.CBU);
+        labelCBU.setBounds(21, 82, 100, 28);
+        getContentPane().add(labelCBU);
+
+        cbu = new JTextField();
+        cbu.setBounds(150, 82, 210, 28);
+        getContentPane().add(cbu);
+
+        labelEntidadBancaria = new JLabel(Constantes.EntidadBancaria);
+        labelEntidadBancaria.setBounds(21, 110, 100, 28);
+        getContentPane().add(labelEntidadBancaria);
+
+        entidadBancaria = new JTextField();
+        entidadBancaria.setBounds(150, 110, 210, 28);
+        getContentPane().add(entidadBancaria);
 
         alta = new JButton(Constantes.Aceptar);
         alta.setBounds(119, 217, 150, 28);
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                if (controlador.altaMedioDePagoDebitoCBU(clienteView.getDni(), "", "")){
+                if (controlador.altaMedioDePagoDebitoCBU(clienteView.getDni(), cbu.getText(), entidadBancaria.getText())){
                     dispose();
                     JOptionPane.showMessageDialog(AltaCBU.this, Constantes.Correcto_MedioPago, "", JOptionPane.INFORMATION_MESSAGE);
                 }else{

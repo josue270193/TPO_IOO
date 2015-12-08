@@ -1,6 +1,6 @@
 package app.ioo.tp.ventanas;
 
-import app.ioo.tp.Constantes;
+import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.vistas.ClienteView;
 

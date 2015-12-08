@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-import app.ioo.tp.Constantes;
+import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.TipoCochera;
 import app.ioo.tp.util.ItemCombo;
