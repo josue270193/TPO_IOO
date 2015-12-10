@@ -98,9 +98,10 @@ public class Cliente {
 
 
 	public void EliminarMedioDePago(int IdMediodePago ) {
-		for(MedioDePago med:  mediosDePago)
-			if(med.getId()==IdMediodePago){
+		for(MedioDePago med : mediosDePago)
+			if(med.getId() == IdMediodePago){
 				mediosDePago.remove(med);
+				// TODO DAR BAJA LOS CONTRATOS CON ESE MEDIO DE PAGO
 			}
 	}
 

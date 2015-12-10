@@ -223,7 +223,7 @@ public class Controlador {
      * @param int
      * @param int
      */
-    public void modificarMedioDePagoTarjetaCredito(String dni, int id_medio_de_pago, String entidad_emisora, long numero_tarjeta,
+    public boolean modificarMedioDePagoTarjetaCredito(String dni, int id_medio_de_pago, String entidad_emisora, long numero_tarjeta,
                                                    Date fecha_vencimiento) {
         Cliente auxCliente = buscarCliente(dni);
         if (auxCliente != null) {
@@ -232,8 +232,10 @@ public class Controlador {
                 ((DebitoTarjetaCredito) auxMedioPago).setEntidad_emisora(entidad_emisora);
                 ((DebitoTarjetaCredito) auxMedioPago).setNumero_tarjeta(numero_tarjeta);
                 ((DebitoTarjetaCredito) auxMedioPago).setFecha_vencimiento(fecha_vencimiento);
+                return true;
             }
         }
+        return false;
     }
 
 
@@ -241,7 +243,7 @@ public class Controlador {
      * @param int
      * @param int
      */
-    public void modificarMedioDePagoDebitoCBU(String dni, int id_medio_de_pago, long numero_facturacion,
+    public boolean modificarMedioDePagoDebitoCBU(String dni, int id_medio_de_pago,
                                               String entidad_bancaria, String cbu) {
         Cliente auxCliente = buscarCliente(dni); // BUSCO SI EXISTE EL CLIENTE
         if (auxCliente != null) {
@@ -249,8 +251,10 @@ public class Controlador {
             if (auxMedioPago != null && auxMedioPago instanceof DebitoCBU) {
                 ((DebitoCBU) auxMedioPago).setEntidad_bancaria(entidad_bancaria);
                 ((DebitoCBU) auxMedioPago).setCbu(cbu);
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -275,6 +279,7 @@ public class Controlador {
         Cliente aux = buscarCliente(DNI);
         if (aux != null) {
             clientes.remove(aux);
+            // TODO ELIMINAR CONTRATO Y MEDIOS DE PAGOS
         }
     }
 

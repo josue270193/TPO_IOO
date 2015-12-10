@@ -197,6 +197,8 @@ public class MainWindow extends JFrame {
             modificacionMedioPago.setText(Constantes.ModificacionMedioDePago);
             modificacionMedioPago.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
+                    ModificacionMedioDePago modificacionMedioDePagoVentana = new ModificacionMedioDePago(controlador);
+                    modificacionMedioDePagoVentana.setVisible(true);
                 }
             });
 
@@ -204,6 +206,8 @@ public class MainWindow extends JFrame {
             bajaMedioPago.setText(Constantes.BajaMedioDePago);
             bajaMedioPago.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
+                    BajaMedioDePago bajaMedioDePagoVentana = new BajaMedioDePago(controlador);
+                    bajaMedioDePagoVentana.setVisible(true);
                 }
             });
 

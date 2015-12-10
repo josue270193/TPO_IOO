@@ -80,4 +80,6 @@ public class Constantes {
 	public static String FechaVencimiento = "Fecha Vencimiento";
 	public static String Error_AltaContrato = "No se pudo realizar la alta del contrato";
 	public static String Exito_AltaContrato = "Se ha creado el contrato ezxitosamente";
+	public static String Correcto_ModificacionMedioPago = "Se ha modificacion el Medio de Pago exitosamente";
+	public static String Error_ModificacionMedioDePago = "No se pudo realizar la modificación del Medio de Pago";
 }
