@@ -96,12 +96,14 @@ public class Cliente {
 		return true;
 	}
 
-
+	/**
+	 * DA UNA BAJA LOGICA PARA QUE NO PUEDA USARSE MAS ESE MEDIO DE PAGO
+	 * @param IdMediodePago
+     */
 	public void EliminarMedioDePago(int IdMediodePago ) {
 		for(MedioDePago med : mediosDePago)
 			if(med.getId() == IdMediodePago){
-				mediosDePago.remove(med);
-				// TODO DAR BAJA LOS CONTRATOS CON ESE MEDIO DE PAGO
+				med.setActivo(false);
 			}
 	}
 
@@ -156,7 +158,13 @@ public class Cliente {
 	}
 
 	public List<MedioDePago> getMediosDePago() {
-		return mediosDePago;
+		List<MedioDePago> medios = new ArrayList<MedioDePago>();
+		for (MedioDePago m : mediosDePago){
+			if (m.isActivo()){
+				medios.add(m);
+			}
+		}
+		return medios;
 	}
 
 	public void setMediosDePago(List<MedioDePago> mediosDePago) {

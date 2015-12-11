@@ -74,7 +74,7 @@ public class Controlador {
             if (auxMedioPago != null) {
                 Cochera auxCochera = buscarCocheraTamano(tamanno); // COMPRUEBO SI TENGO UNA COCHERA DISPONIBLE CON EL TAMA�O A USAR
                 if (auxCochera != null) {
-                    Contrato contratoExistente = exiteContrato(auxCliente, auxMedioPago, auxCochera, periodoInicio, periodoFin);
+                    Contrato contratoExistente = existeContrato(auxCliente, auxMedioPago, auxCochera, periodoInicio, periodoFin);
                     if (contratoExistente == null) {
                         contratoExistente = new Contrato(periodoInicio, periodoFin, auxCliente, auxCochera, auxMedioPago);
                         contratos.add(contratoExistente);
@@ -125,7 +125,7 @@ public class Controlador {
      * @param periodoInicio
      * @return NULL SI NO TIENE EL CONTRATO O  EL CONTRATO A BUSCAR
      */
-    private Contrato exiteContrato(Cliente aux, MedioDePago auxMedioPago, Cochera auxCochera, Date periodoInicio, Date periodoFin) {
+        private Contrato existeContrato(Cliente aux, MedioDePago auxMedioPago, Cochera auxCochera, Date periodoInicio, Date periodoFin) {
         for (Contrato contrato : contratos) {
             if (contrato.tienesContrato(aux, auxMedioPago, auxCochera, periodoInicio, periodoFin)) {
                 return contrato;
@@ -352,6 +352,31 @@ public class Controlador {
         return lista;
     }
 
+    public boolean eliminarMedioDePago(String dni, int idMedioDePago) {
+        Cliente cliente = buscarCliente(dni);
+
+        cliente.EliminarMedioDePago(idMedioDePago);
+
+        return true;
+    }
+
+    /**
+     * SE OBTIENE LOS CONTRATOS VIGENTES POR CLIENTE
+     * @param dni
+     * @return
+     */
+    public List<ContratoView> obtenerContratoVigentesCliente(String dni) {
+        List<ContratoView> lista = new ArrayList<ContratoView>();
+
+        Cliente cliente = buscarCliente(dni);
+        for (Contrato c : contratos){
+            if (c.getCliente().equals(cliente)){
+                lista.add(c.getContratoView());
+            }
+        }
+
+        return lista;
+    }
     // GET Y SET DE LOS ATRIBUTOS
     public List<Cliente> getClientes() {
         return clientes;

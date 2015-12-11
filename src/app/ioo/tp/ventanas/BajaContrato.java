@@ -2,8 +2,8 @@ package app.ioo.tp.ventanas;
 
 import app.ioo.tp.Controlador;
 import app.ioo.tp.util.Constantes;
-import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.util.ItemCombo;
+import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.vistas.*;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ModificacionMedioDePago extends JDialog {
+public class BajaContrato extends JDialog {
 
     private JLabel label;
     private WideComboBox<ItemCombo> comboBox;
@@ -26,7 +26,7 @@ public class ModificacionMedioDePago extends JDialog {
     private Controlador controlador;
     private ClienteView clienteView;
 
-    public ModificacionMedioDePago(Controlador controlador) throws HeadlessException {
+    public BajaContrato(Controlador controlador) throws HeadlessException {
         super();
         this.controlador = controlador;
         initGUI();
@@ -36,7 +36,7 @@ public class ModificacionMedioDePago extends JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);        
         getContentPane().setLayout(null);
 
-        label = new JLabel(Constantes.TipoMedioDePago);
+        label = new JLabel(Constantes.Contrato);
         label.setBounds(21, 50, 120, 28);
         label.setVisible(false);
         getContentPane().add(label);
@@ -53,22 +53,7 @@ public class ModificacionMedioDePago extends JDialog {
         alta.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 ItemCombo item = (ItemCombo) comboBox.getSelectedItem();
-
-                if (item.getValue() instanceof EfectivoView){
-
-                    ModificacionEfectivo ventana = new ModificacionEfectivo(controlador, (MedioDePagoView) item.getValue(), clienteView);
-                    ventana.setVisible(true);
-
-                }else if (item.getValue() instanceof DebitoCBUView){
-
-                    ModificacionCBU ventana = new ModificacionCBU(controlador, (MedioDePagoView) item.getValue(), clienteView);
-                    ventana.setVisible(true);
-
-                }else if (item.getValue() instanceof DebitoTarjetaCreditoView){
-                    ModificacionTarjetaCredito ventana = new ModificacionTarjetaCredito(controlador, (MedioDePagoView) item.getValue(), clienteView);
-                    ventana.setVisible(true);
-
-                }
+                controlador.darBajaContrato(clienteView.getDni(), ((ContratoView)item.getValue()).getIdContrato() );
                 dispose();
             }
         });
@@ -92,16 +77,8 @@ public class ModificacionMedioDePago extends JDialog {
                 	) {
 
                     Vector<ItemCombo> opciones = new Vector<ItemCombo>();
-                    for (MedioDePagoView m : controlador.obtenerMediosPagoCliente(clienteView.getDni()) ){
-                        if (m instanceof EfectivoView){
-                            opciones.add(new ItemCombo(m, Constantes.MedioDePagoEfectivo));
-                        }
-                        else if (m instanceof DebitoCBUView){
-                            opciones.add(new ItemCombo(m, Constantes.MedioDePagoDebitoCBU + " - " + ((DebitoCBUView) m).getCbu()  ));
-                        }
-                        else if (m instanceof DebitoTarjetaCreditoView){
-                            opciones.add(new ItemCombo(m, Constantes.MedioDePagoDebitoTarjetaCredito + " - " + ((DebitoTarjetaCreditoView) m).getNumero_tarjeta()));
-                        }
+                    for (ContratoView c : controlador.obtenerContratoVigentesCliente(clienteView.getDni()) ){
+                        opciones.add(new ItemCombo(c, c.getIdContrato() + " - " + c.getAutoView().getPatente() + " del "+ c.getFechaInicio() + " al " + c.getFechaFin()));
                     }
                     comboBox.setModel(new DefaultComboBoxModel<ItemCombo>(opciones));
 
@@ -109,19 +86,18 @@ public class ModificacionMedioDePago extends JDialog {
                     label.setVisible(true);
                     comboBox.setVisible(true);
                 }else {
-                    JOptionPane.showMessageDialog(ModificacionMedioDePago.this, Constantes.Error_NoExisteCliente, "", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(BajaContrato.this, Constantes.Error_NoExisteCliente, "", JOptionPane.ERROR_MESSAGE);
 
                     comboBox.removeAllItems();
                     alta.setEnabled(false);
                     label.setVisible(false);
                     comboBox.setVisible(false);
-
                 }
             }
         });
         getContentPane().add(buscar);
         pack();
-        setTitle(Constantes.ModificacionMedioDePago);
+        setTitle(Constantes.BajaContrato);
 
         setSize(500, 300);
     }

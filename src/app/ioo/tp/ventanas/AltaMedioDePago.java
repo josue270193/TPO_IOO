@@ -3,6 +3,7 @@ package app.ioo.tp.ventanas;
 import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.util.ItemCombo;
+import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.vistas.ClienteView;
 import app.ioo.tp.vistas.MedioDePagoView;
 
@@ -15,7 +16,7 @@ import java.util.Vector;
 public class AltaMedioDePago extends JDialog {
 
     private JLabel label;
-    private JComboBox<ItemCombo> comboBox;
+    private WideComboBox<ItemCombo> comboBox;
 
     private JLabel jLabel4;
     private JTextField DniCliente;
@@ -46,7 +47,7 @@ public class AltaMedioDePago extends JDialog {
         opciones.add(new ItemCombo(MedioDePagoView.MEDIO_PAGO_CBU, Constantes.MedioDePagoDebitoCBU));
         opciones.add(new ItemCombo(MedioDePagoView.MEDIO_PAGO_TARJETA_CREDITO, Constantes.MedioDePagoDebitoTarjetaCredito));
 
-        comboBox = new JComboBox<ItemCombo>(opciones);
+        comboBox = new WideComboBox<ItemCombo>(opciones);
         comboBox.setRenderer(new ItemCombo.ItemComboRender());
         comboBox.setBounds(119, 50, 210, 28);
         comboBox.setVisible(false);

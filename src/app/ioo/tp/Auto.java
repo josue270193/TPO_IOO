@@ -1,5 +1,7 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.AutoView;
+
 /**
  *	
  * Clase que define el auto
@@ -56,6 +58,8 @@ public class Auto {
 	public void setTamanno(long tamanno) {
 		this.tamanno = tamanno;
 	}
-	
-	
+
+	public AutoView getAutoView() {
+		return new AutoView(getPatente(), getMarca(), getModelo(), getTamanno());
+	}
 }

@@ -1,5 +1,10 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.AutoView;
+import app.ioo.tp.vistas.ClienteView;
+import app.ioo.tp.vistas.ContratoView;
+import app.ioo.tp.vistas.MedioDePagoView;
+
 import java.util.Date;
 
 /**
@@ -150,5 +155,9 @@ public class Contrato {
 
 	public void setCuenta_corriente(CuentaCorriente cuenta_corriente) {
 		this.cuenta_corriente = cuenta_corriente;
-	}	
+	}
+
+	public ContratoView getContratoView() {
+		return new ContratoView(getNumero_contrato(), getCliente().getClienteView(), getCochera().getCocheraView(), getCochera().getAuto().getAutoView(), getMedio_de_pago().crearMedioDePagoView(), getPeriodo_inicio(), getPeriodo_fin());
+	}
 }
