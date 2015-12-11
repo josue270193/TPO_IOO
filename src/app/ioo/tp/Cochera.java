@@ -1,5 +1,7 @@
 package app.ioo.tp;
 
+import app.ioo.tp.vistas.CocheraView;
+
 /**
  * 
  * Clase de la cochera a la cual tiene asociado un {@link TipoCochera}
@@ -125,5 +127,9 @@ public class Cochera {
 			return ((Cochera) o).getNumero() == getNumero(); 
 		}
 		return false;
+	}
+
+	public CocheraView getCocheraView() {
+		return new CocheraView(getNumero(), getTipo(), getCostoCochera(), getDisponible(), getAuto().getAutoView());
 	}
 }

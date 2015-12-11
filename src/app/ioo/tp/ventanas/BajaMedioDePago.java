@@ -3,6 +3,7 @@ package app.ioo.tp.ventanas;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.util.Constantes;
 import app.ioo.tp.util.ItemCombo;
+import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.vistas.*;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ import java.util.Vector;
 public class BajaMedioDePago extends JDialog {
 
     private JLabel label;
-    private JComboBox<ItemCombo> comboBox;
+    private WideComboBox<ItemCombo> comboBox;
 
     private JLabel jLabel4;
     private JTextField DniCliente;
@@ -40,7 +41,7 @@ public class BajaMedioDePago extends JDialog {
         label.setVisible(false);
         getContentPane().add(label);
 
-        comboBox = new JComboBox<ItemCombo>();
+        comboBox = new WideComboBox<ItemCombo>();
         comboBox.setRenderer(new ItemCombo.ItemComboRender());
         comboBox.setBounds(119, 50, 210, 28);
         comboBox.setVisible(false);
@@ -53,12 +54,8 @@ public class BajaMedioDePago extends JDialog {
             public void actionPerformed(ActionEvent evt) {
                 ItemCombo item = (ItemCombo) comboBox.getSelectedItem();
 
-                if (item.getValue() instanceof EfectivoView){
-
-                }else if (item.getValue() instanceof DebitoCBUView){
-
-                }else if (item.getValue() instanceof DebitoTarjetaCreditoView){
-
+                if (controlador.eliminarMedioDePago(clienteView.getDni(), ((MedioDePagoView) item.getValue()).getId() )){
+                    dispose();
                 }
             }
         });
@@ -111,7 +108,7 @@ public class BajaMedioDePago extends JDialog {
         });
         getContentPane().add(buscar);
         pack();
-        setTitle(Constantes.AltaMedioDePago);
+        setTitle(Constantes.BajaMedioDePago);
 
         setSize(500, 300);
     }

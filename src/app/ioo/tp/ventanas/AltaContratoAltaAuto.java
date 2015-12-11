@@ -11,6 +11,7 @@ import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.TipoCochera;
 import app.ioo.tp.util.ItemCombo;
+import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.vistas.AutoView;
 import app.ioo.tp.vistas.ContratoView;
 
@@ -34,7 +35,7 @@ public class AltaContratoAltaAuto extends JDialog {
     private JTextField fieldModelo;
 
     private JLabel labelTamanno;
-    private JComboBox<ItemCombo> fieldTamanno;
+    private WideComboBox<ItemCombo> fieldTamanno;
 
     private JButton alta;
 
@@ -94,7 +95,7 @@ public class AltaContratoAltaAuto extends JDialog {
         opcionesTamano.add(new ItemCombo(TipoCochera.TAMANO_MEDIANA, Constantes.Medianas));
         opcionesTamano.add(new ItemCombo(TipoCochera.TAMANO_GRANDE, Constantes.Grandes));
 
-        fieldTamanno = new JComboBox<ItemCombo>(opcionesTamano);
+        fieldTamanno = new WideComboBox<ItemCombo>(opcionesTamano);
         fieldTamanno.setRenderer(new ItemCombo.ItemComboRender());
         fieldTamanno.setBounds(119, 180, 210, 28);
         getContentPane().add(fieldTamanno);

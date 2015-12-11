@@ -352,6 +352,31 @@ public class Controlador {
         return lista;
     }
 
+    public boolean eliminarMedioDePago(String dni, int idMedioDePago) {
+        Cliente cliente = buscarCliente(dni);
+
+        cliente.EliminarMedioDePago(idMedioDePago);
+
+        return true;
+    }
+
+    /**
+     * SE OBTIENE LOS CONTRATOS VIGENTES POR CLIENTE
+     * @param dni
+     * @return
+     */
+    public List<ContratoView> obtenerContratoVigentesCliente(String dni) {
+        List<ContratoView> lista = new ArrayList<ContratoView>();
+
+        Cliente cliente = buscarCliente(dni);
+        for (Contrato c : contratos){
+            if (c.getCliente().equals(cliente)){
+                lista.add(c.getContratoView());
+            }
+        }
+
+        return lista;
+    }
     // GET Y SET DE LOS ATRIBUTOS
     public List<Cliente> getClientes() {
         return clientes;

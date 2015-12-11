@@ -7,10 +7,11 @@ import java.util.Date;
  */
 public class ContratoView {
 
-    private Integer idContrato;
+    private long idContrato;
 
     private ClienteView clienteView;
 
+    private CocheraView cocheraView;
     private AutoView autoView;
 
     private MedioDePagoView medioDePagoView;
@@ -22,16 +23,17 @@ public class ContratoView {
     public ContratoView() {
     }
 
-    public ContratoView(Integer idContrato, ClienteView clienteView, AutoView autoView, MedioDePagoView medioDePagoView, Date fechaInicio, Date fechaFin) {
+    public ContratoView(long idContrato, ClienteView clienteView, CocheraView cocheraView, AutoView autoView, MedioDePagoView medioDePagoView, Date fechaInicio, Date fechaFin) {
         this.idContrato = idContrato;
         this.clienteView = clienteView;
+        this.cocheraView = cocheraView;
         this.autoView = autoView;
         this.medioDePagoView = medioDePagoView;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
 
-    public Integer getIdContrato() {
+    public long getIdContrato() {
         return idContrato;
     }
 

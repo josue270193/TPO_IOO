@@ -4,6 +4,7 @@ import app.ioo.tp.TipoCochera;
 import app.ioo.tp.util.Constantes;
 import app.ioo.tp.Controlador;
 import app.ioo.tp.util.ItemCombo;
+import app.ioo.tp.util.WideComboBox;
 import app.ioo.tp.vistas.*;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class AltaContratoDetalle extends JDialog {
 
     private Vector<ItemCombo> opciones;
     private JLabel labelMedioPago;
-    private JComboBox<ItemCombo> fieldMedioPago;
+    private WideComboBox<ItemCombo> fieldMedioPago;
 
     public AltaContratoDetalle(Controlador controlador, ContratoView contratoView) throws HeadlessException {
         super();
@@ -80,7 +81,7 @@ public class AltaContratoDetalle extends JDialog {
         labelMedioPago.setBounds(21, 180, 100, 28);
         getContentPane().add(labelMedioPago);
 
-        fieldMedioPago= new JComboBox<ItemCombo>(opciones);
+        fieldMedioPago= new WideComboBox<ItemCombo>(opciones);
         fieldMedioPago.setRenderer(new ItemCombo.ItemComboRender());
         fieldMedioPago.setBounds(150, 180, 210, 28);
         getContentPane().add(fieldMedioPago);

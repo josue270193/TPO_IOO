@@ -175,6 +175,8 @@ public class MainWindow extends JFrame {
             bajaContrato.setText(Constantes.BajaContrato);
             bajaContrato.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
+                    BajaContrato bajaContrato = new BajaContrato(controlador);
+                    bajaContrato.setVisible(true);
                 }
             });
 

@@ -17,14 +17,16 @@ public abstract class MedioDePago {
 	private static int ultimoID;
 
 	protected int id;
+	protected boolean activo;
 
-	public MedioDePago() {		
+	public MedioDePago() {
 		this(++ultimoID);
 	}
 
 	
 	public MedioDePago(int id) {		
 		this.id = id;
+		this.activo = true;
 	}
 
 	// GET Y SET DE LOS ATRIBUTOS
@@ -35,7 +37,15 @@ public abstract class MedioDePago {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
 	@Override
 	public boolean equals(Object o) {	
 		if (o instanceof MedioDePago){
